@@ -1,0 +1,319 @@
+body{
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	font-family: 'Do Hyeon', sans-serif;
+	line-height: 0.5em;
+	color: #4DB890;
+}
+
+.bg-warning {
+  background-color: #ffb22b !important;
+}
+.bg-success {
+  background-color: #26dad2 !important;
+}
+
+.btn-outline {
+  color: inherit;
+  background-color: transparent;
+  -webkit-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+.btn-rounded {
+  border-radius: 60px;
+  padding: 7px 18px;
+  border: 1px solid #26dad2;
+}
+
+.btn-dark:hover {
+  background-color: #028ee1;
+  border: 1px solid #028ee1;
+}
+
+/*Left container for the image*/
+#login-page-image{
+	padding: 0px; 
+	/*height: 631px;*/
+	width: 50% ;
+	float: left;
+	border-right: none;
+}
+
+
+/*Switch buttons*/
+
+a{
+	color: #4DB890;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #E8F5E9;
+    background-color: #4DB890;
+}
+
+.nav-link:hover {
+    text-decoration: none;
+    color: white;
+}
+
+/*Aligning the details content on the right of the page*/
+#login-page-details{
+	color: #4DB890 ;
+	/*height: 631px;*/
+	height: 100%;
+	width: 50%;
+	position: absolute;
+	float: right;
+	margin-left: 50%;
+	/*background-color: #c5f9e6;*/
+
+	background-color: #E8F5E9;
+	background: linear-gradient(to right, #C8E6C9 , #E8F5E9);
+	/*background: linear-gradient(to right, #A5D6A7 , #E8F5E9);*/
+
+	padding: 80px 45px; 
+	overflow-y:auto;
+}
+
+body::-webkit-scrollbar, #login-page-details::-webkit-scrollbar {
+    width: 0.3em;
+}
+ 
+body::-webkit-scrollbar-track, #login-page-details::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb, #login-page-details::-webkit-scrollbar-thumb {
+  background-color: #4DB890;
+  outline: 1px solid #4DB890;
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #4DB890 ;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #4DB890 ;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: #4DB890 ;
+}
+
+
+#login-page-details input[type = "text"],
+#login-page-details input[type = "email"],
+#login-page-details input[type = "password"]{
+	display: block;
+	background-color: transparent;
+	border: 0;
+	border-bottom: 1px solid #4DB890;
+	height: 27px;
+	color: #4DB890;
+	width: 100%;
+}
+
+#searchHospital #submitHospital{
+	display: inline;
+	width: 30px;
+}
+
+#login-page-details label{
+	text-align: left;
+	color: #4DB890 ;
+	font-size: 13px;
+	margin-top: 15px;
+	display: block;
+}
+
+#login-page-details input:focus{
+	outline: none;
+}
+
+#login-page-details input[type = "submit"]{
+	background-color: transparent;
+	border: 2px solid #4DB890;
+	border-radius: 250px;
+	color: #4DB890 ;
+	display: block;
+	font-size: 14px;
+	letter-spacing: 1px;
+	margin: 20px auto;
+	height: 41px;
+	width: 100%;	
+}
+
+#submitHospital{
+	background-color: transparent;
+	border: 2px solid #4DB890;
+	border-radius: 250px;
+	color: #4DB890 ;
+	/*display: block;*/
+	font-size: 14px;
+	letter-spacing: 1px;
+	margin: 20px auto;
+	height: 41px;
+	width: 100%;		
+}
+
+#submitUser{
+	background-color: transparent;
+	border: 2px solid #4DB890;
+	border-radius: 250px;
+	color: #4DB890 ;
+	/*display: block;*/
+	font-size: 14px;
+	letter-spacing: 1px;
+	margin: 20px auto;
+	height: 41px;
+	width: 100%;		
+}
+
+#submitRetailer{
+	background-color: transparent;
+	border: 2px solid #4DB890;
+	border-radius: 250px;
+	color: #4DB890 ;
+	/*display: block;*/
+	font-size: 14px;
+	letter-spacing: 1px;
+	margin: 20px auto;
+	height: 41px;
+	width: 100%;		
+}
+
+#login-page-details input[type = "submit"]:hover{
+	cursor: pointer;
+}
+
+
+/*Main heading of the page*/
+h3{
+	text-align: center;
+
+}
+
+form{
+	line-height: 1em ;
+    text-align: center;
+}
+
+
+#map{
+height: 400px;
+width: 100%;
+margin: 10px auto;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 150px;
+}
+
+.modal.success-modal {
+    padding-top: 180px;
+}
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    /*background-color: #d23737;*/
+    color: white;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+/* The Close Button */
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: -25px;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /*border: 1px solid #ccc;*/
+    /*background-color: #f1f1f1;*/
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    /*float: left;*/
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 18px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+    border-radius: 0.4em;
+    margin: 20px 10px;
+
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #4DB890;
+    color: #E8F5E9;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #4DB890;
+    color: #E8F5E9;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    /*border: 1px solid #ccc;*/
+    border-top: none;
+}
