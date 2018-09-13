@@ -48,28 +48,28 @@
 			<ul class="procedure-list">
 				<li>
 					<i class="fas fa-search fa-3x"></i>
-					<p>Search for<br>Your Medicines</p>
+					<p>Search<br>Medicines</p>
 				</li>
 				<li>
 					<i class="fas fa-arrow-right fa-3x"></i>
 				</li>
 				<li>
 					<i class="fas fa-map-marker-alt fa-3x"></i>
-					<p>Set Your Location</p>
+					<p>Set Your<br>Location</p>
 				</li>
 				<li>
 					<i class="fas fa-arrow-right fa-3x"></i>
 				</li>
 				<li>
 					<i class="fas fa-store fa-3x"></i>
-					<p>Find Your <br>Nearby Store</p>
+					<p>Find Stores<br>Nearby</p>
 				</li>
 				<li>
 					<i class="fas fa-arrow-right fa-3x"></i>
 				</li>				
 				<li>
 					<i class="fas fa-clipboard-check fa-3x"></i>
-					<p>Reserve Your <br> Medicines</p>
+					<p>Reserve Your<br>Medicines</p>
 				</li>
 			</ul>
 		</div>
@@ -80,8 +80,8 @@
 
 	<div class="footer">
 		<div class="footer-content">
-			<p>Yusra Wasi | Usman Sabir | Muneeb Ahmed Khan</p>
-			<p>Copyright © 2008 MediQuick</p>
+			<p>Muneeb Ahmed Khan | Usman Sabir | Yusra Wasi</p>
+			<p>Copyright © 2018 MediQuick</p>
 		</div>
 	</div>
 	</div>
