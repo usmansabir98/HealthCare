@@ -537,7 +537,7 @@ hr{
     padding-top: 180px;
 }
 /* Modal Header */
-.modal-header {
+.modalheader {
     padding: 2px 16px;
     /*background-color: #d23737;*/
     color: white;

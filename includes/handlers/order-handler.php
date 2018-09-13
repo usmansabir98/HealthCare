@@ -4,14 +4,17 @@
 $modal = "<div id='myModalSuccess' class='modal success-modal'>
 
             <div class='modal-content'>
-              <div class='modal-header bg-success'>
+              <div class='modalheader bg-success'>
                 <h2>Succesful!</h2>
 
                 <span class='close-modal'>&times;</span>
               </div>
               <div class='modal-body p-t-40 p-b-40'>
-                <p style='text-align: center;'>Information successfully updated</p>
-              
+                <p style='text-align: center;'>Order placed successfully</p>
+                <div class='p-b-20' style='display: flex; justify-content: center;'>
+                  
+                  <div class='btn btn-outline btn-rounded btn-dark m-l-10' id='cancel-modal'>Ok, Got It!</div>
+                </div>
               </div>
             </div>
 
@@ -36,7 +39,7 @@ $modalFailure = "<div id='myModalFailure' class='modal success-modal'>
                 <span class='close-modal'>&times;</span>
               </div>
               <div class='modal-body p-t-40 p-b-40'>
-                <p style='text-align: center;'>Failed to update information</p>
+                <p style='text-align: center;'>Failed to place order</p>
               
               </div>
             </div>
