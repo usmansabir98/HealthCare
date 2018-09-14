@@ -207,7 +207,7 @@ $customersTotal = mysqli_num_rows($customersQuery);
                         
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Tables</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="table-bootstrap.php">Orders</a></li>
+                                <li><a href="table-orders.php">Orders</a></li>
                                 <li><a href="table-datatable.php">Inventory</a></li>
                             </ul>
                         </li>
