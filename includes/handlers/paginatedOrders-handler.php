@@ -241,6 +241,7 @@ if($page != $lastPage){
   foreach($data as $d){
     // echo $i; echo "<br>";
     // echo $d['brandName']; echo "<br>";
+    $orderId = $d['orderId'];
     $name = $d['name'];
     $brandName = $d['brandName'];
     $manName = $d['manName'];
@@ -282,7 +283,14 @@ if($page != $lastPage){
     <td>$quantity</td>
     <td>$datetime</td>
     <td><span class='$statusClass'>$status</span></td>
+    <td class='edit-col'>
+      <div class='row'>
 
+        <div id='$count' style="display: none;"></div>
+        <div id="$orderId" class="ti-pencil-alt zoom col-sm-6"></div>
+      
+      </div>
+    </td>
 
 </tr>
 <tr class='edit-container'></tr>

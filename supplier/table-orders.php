@@ -3,6 +3,8 @@
 
 include("headerSupplierDashboard.php");
 include("../includes/handlers/paginatedOrders-handler.php");
+include("../includes/handlers/code-handler.php");
+
 
 if(isset($_SERVER['PHP_SELF'])){
   $thisPage = $_SERVER['PHP_SELF'];
@@ -22,10 +24,47 @@ if(isset($_POST['submitPerPage'])){
 
 }
 
-if(isset($_POST['submitChangeQuantity'])){
-  $itemId = $_POST['itemId'];
-  $quantity = $_POST['quantity'];
-  $query = mysqli_query($con, "UPDATE inventory SET quantity='$quantity' WHERE inventory.itemId='$itemId'");
+if(isset($_POST['submitChangeStatus'])){
+  $orderId = $_POST['orderId'];
+  $code = $_POST['code'];
+
+  $verificationCode = generateCode($orderId, 5);
+
+  if($code==$verificationCode){
+    $query = mysqli_query($con, "UPDATE orders SET 
+    status=(select statusId from orderstatus where status='Fulfilled') WHERE orderId='$orderId'");
+    // echo "correct";
+  }
+
+  else{
+    $modalFailure = "<div id='myModalFailure' class='modal success-modal'>
+
+            <div class='modal-content'>
+              <div class='modal-header bg-danger'>
+                <h2 style='color: white;'>Failed!</h2>
+
+                <span class='close-modal'>&times;</span>
+              </div>
+              <div class='modal-body p-t-40 p-b-40'>
+                <p style='text-align: center; font-size:20px;'>Verification Code Incorrect!</p>
+              
+              </div>
+            </div>
+
+          </div>";
+
+$modalFailureScript = "<script>
+      setTimeout(function(){
+        document.getElementById('myModalFailure').style.display = 'block';
+      }, 400);
+      setTimeout(function(){
+        document.getElementById('myModalFailure').style.display = 'none';
+      }, 3200);
+    </script>";
+
+    echo $modalFailure; echo $modalFailureScript;
+  }
+  
 
 }
 
@@ -185,6 +224,8 @@ if(isset($_SESSION['retailerLoggedIn'])) {
                                       <th>Qty</th>
                                       <th>Date</th>
                                       <th>Status</th>
+                                      <th>Edit</th>
+
                                   </tr>
                               </thead>
                               <tfoot>
@@ -196,6 +237,8 @@ if(isset($_SESSION['retailerLoggedIn'])) {
                                       <th>Qty</th>
                                       <th>Date</th>
                                       <th>Status</th>
+                                      <th>Edit</th>
+
 
                                   </tr>
                               </tfoot>
@@ -265,10 +308,10 @@ if(isset($_SESSION['retailerLoggedIn'])) {
               td.setAttribute('colspan', '8');
               td.innerHTML = `
                 <form class="pull-right" action="${thisPage}" method='POST'">
-                  <input type="hidden" name="itemId" value=${this.id}>
-                  <label for="quantity">Enter quantity: </label>
-                  <input type="number" name="quantity" id="quantity" value=${this.parentElement.parentElement.previousElementSibling.textContent}>
-                  <input type="submit" name="submitChangeQuantity" value="update">
+                  <input type="hidden" name="orderId" value=${this.id}>
+                  <label for="code">Enter code: </label>
+                  <input type="number" name="code" id="code">
+                  <input class='btn btn-success btn-outline' type="submit" name="submitChangeStatus" value="Fulfill Order">
                 </form>
                               `;
               document.querySelectorAll('.edit-container')[j].appendChild(td);
