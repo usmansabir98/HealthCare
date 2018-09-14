@@ -71,10 +71,10 @@ $customersTotal = mysqli_num_rows($customersQuery);
                 <div class="navbar-header">
                     <a class="navbar-brand" href="supplierDashboard.php">
                         <!-- Logo icon -->
-                        <b><img src="images/logo.png" alt="homepage" class="dark-logo" /></b>
+                        <b><img src="../includes/assets/images/logo-dashboard.jpg" alt="homepage" class="dark-logo" style="width: 32px;" /></b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        <span style="letter-spacing: 2.5px; color: #4db890; font-weight: bold;">MediQuick</span>
                     </a>
                 </div>
                 <!-- End Logo -->

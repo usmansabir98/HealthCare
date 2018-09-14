@@ -12,6 +12,45 @@ else {
     header("Location: ../register.php");
 }
 
+$queryAll = mysqli_query($con, "SELECT orders.orderId, brandname.brandName, manufacturer.manName, dosageform.formName, medicine.pack, user.name, orders.time, orders.quantity, orderstatus.status 
+        FROM `orders` 
+        INNER JOIN user on orders.userId = user.id
+        INNER JOIN orderstatus on orders.status = orderstatus.statusId
+        INNER JOIN medicine on orders.medId = medicine.medId
+        INNER JOIN brandName on medicine.brandId = brandname.brandId
+        INNER JOIN manufacturer on medicine.manId = manufacturer.manId
+        INNER JOIN dosageform on medicine.formId = dosageform.formId
+        where orders.supplierId = (SELECT id from retailer where emailid='$retailerLoggedIn') 
+        and orders.status = 1
+        order by orders.time desc LIMIT 3");
+
+$queryPending = mysqli_query($con, "SELECT orderId from orders
+    where supplierId = (SELECT id from retailer where emailid='$retailerLoggedIn')
+    and status = 1");
+
+$queryExpired = mysqli_query($con, "SELECT orderId from orders
+    where supplierId = (SELECT id from retailer where emailid='$retailerLoggedIn')
+    and status = 2");
+
+$queryFulfilled = mysqli_query($con, "SELECT orderId from orders
+    where supplierId = (SELECT id from retailer where emailid='$retailerLoggedIn')
+    and status = 3");
+
+$queryUnfulfilled = mysqli_query($con, "SELECT orderId from orders
+    where supplierId = (SELECT id from retailer where emailid='$retailerLoggedIn')
+    and status = 4");
+
+$queryTotal = mysqli_query($con, "SELECT orderId from orders
+    where supplierId = (SELECT id from retailer where emailid='$retailerLoggedIn')");
+
+$totalCount = mysqli_num_rows($queryTotal);
+
+$pendingCount = mysqli_num_rows($queryPending)/$totalCount*100;
+$expiredCount = mysqli_num_rows($queryExpired)/$totalCount*100;
+$fulfilledCount = mysqli_num_rows($queryFulfilled)/$totalCount*100;
+$unfulfilledCount = mysqli_num_rows($queryUnfulfilled)/$totalCount*100;
+
+
 ?>
             <!-- Container fluid  -->
             <div class="container-fluid">
@@ -28,63 +67,75 @@ else {
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Name</th>
+                                                <th>Supplier</th>
                                                 <th>Product</th>
-                                                <th>quantity</th>
+                                                <th>Packing</th>
+                                                <th>Qty</th>
+                                                <th>Date</th>
                                                 <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
 
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Muneeb</td>
-                                                <td><span>Panadol</span></td>
-                                                <td><span>2 packs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/2.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Usman</td>
-                                                <td><span>Monekast</span></td>
-                                                <td><span>1 pack</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/3.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Yusra</td>
-                                                <td><span>Buscopan</span></td>
-                                                <td><span>4 packs</span></td>
-                                                <td><span class="badge badge-warning">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="round-img">
-                                                        <a href=""><img src="images/avatar/4.jpg" alt=""></a>
-                                                    </div>
-                                                </td>
-                                                <td>Ahmed</td>
-                                                <td><span>Buscocin</span></td>
-                                                <td><span>2 packs</span></td>
-                                                <td><span class="badge badge-success">Done</span></td>
-                                            </tr>
-                                        </tbody>
+
+                                            <?php 
+
+                                            $i =1;
+
+                                            while ($row = mysqli_fetch_array($queryAll)) {
+                                                # code.
+                                                # code.
+                                                $name = $row['name'];
+                                                $brandName = $row['brandName'];
+                                                $manName = $row['manName'];
+                                                $dosageForm = $row['formName'];
+                                                $pack = $row['pack'];
+
+                                                $product = $brandName.'<br>'.$manName;
+                                                $packing = $pack.'<br>'.$dosageForm;
+
+
+                                                $quantity = $row['quantity'];
+                                                $date = date('Y-m-d', $row['time']);
+                                                $time = date('h:i:sa', $row['time']);
+                                                $status = $row['status'];
+                                                $datetime = $date.'<br>'.$time;
+
+                                                if($status == 'Pending'){
+                                                    $statusClass = 'badge badge-primary';
+                                                }
+                                                else if($status == 'Fulfilled'){
+                                                    $statusClass = 'badge badge-success';
+                                                }
+                                                else if($status == 'Unfulfilled'){
+                                                    $statusClass = 'badge badge-danger';
+                                                }
+                                                else{
+                                                    $statusClass = 'badge badge-warning';
+
+                                                }
+
+
+                                                echo "<tr>
+
+                                                    <td>$i</td>
+                                                    <td>$name</td>
+                                                    <td>$product</td>
+                                                    <td>$packing</td>
+                                                    <td>$quantity</td>
+                                                    <td>$datetime</td>
+                                                    <td><span class='$statusClass'>$status</span></td>
+
+
+                                                </tr>";
+
+                                                $i++;
+                                            }
+
+                                             ?>
+                                        </thead>
                                     </table>
                                 </div>
                             </div>
@@ -97,26 +148,26 @@ else {
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body browser">
-                                <p class="f-w-600">Fulfilled Orders <span class="pull-right">85%</span></p>
+                                <p class="f-w-600">Fulfilled Orders <span class="pull-right"><?php echo $fulfilledCount; ?>%</span></p>
                                 <div class="progress ">
-                                    <div role="progressbar" style="display: none; width:85%; height:8px;" class="progress-bar bg-danger wow animated progress-animated"> <span class="sr-only">60% Complete</span> </div>
+                                    <div role="progressbar" style="display: none; width:<?php echo $fulfilledCount; ?>%; height:8px;" class="progress-bar bg-danger wow animated progress-animated"> <span class="sr-only"><?php echo $fulfilledCount; ?>% Complete</span> </div>
                                 </div>
 
                                 
 
-                                <p class="m-t-30 f-w-600">Pending Orders<span class="pull-right">90%</span></p>
+                                <p class="m-t-30 f-w-600">Pending Orders<span class="pull-right"><?php echo $pendingCount; ?>%</span></p>
                                 <div class="progress">
-                                    <div role="progressbar" style="display: none; width: 90%; height:8px;" class="progress-bar bg-info wow animated progress-animated"> <span class="sr-only">60% Complete</span> </div>
+                                    <div role="progressbar" style="display: none; width: <?php echo $pendingCount; ?>%; height:8px;" class="progress-bar bg-info wow animated progress-animated"> <span class="sr-only"><?php echo $pendingCount; ?>% Complete</span> </div>
                                 </div>
 
-                                <p class="m-t-30 f-w-600">Unfulfilled Orders<span class="pull-right">65%</span></p>
+                                <p class="m-t-30 f-w-600">Unfulfilled Orders<span class="pull-right"><?php echo $unfulfilledCount; ?>%</span></p>
                                 <div class="progress">
-                                    <div role="progressbar" style="display: none; width: 65%; height:8px;" class="progress-bar bg-success wow animated progress-animated"> <span class="sr-only">60% Complete</span> </div>
+                                    <div role="progressbar" style="display: none; width: <?php echo $unfulfilledCount; ?>%; height:8px;" class="progress-bar bg-success wow animated progress-animated"> <span class="sr-only"><?php echo $unfulfilledCount; ?>% Complete</span> </div>
                                 </div>
 
-                                <p class="m-t-30 f-w-600">Expired Orders<span class="pull-right">65%</span></p>
+                                <p class="m-t-30 f-w-600">Expired Orders<span class="pull-right"><?php echo $expiredCount; ?>%</span></p>
                                 <div class="progress">
-                                    <div role="progressbar" style="display: none; width: 65%; height:8px;" class="progress-bar bg-warning wow animated progress-animated"> <span class="sr-only">60% Complete</span> </div>
+                                    <div role="progressbar" style="display: none; width: <?php echo $expiredCount; ?>%; height:8px;" class="progress-bar bg-warning wow animated progress-animated"> <span class="sr-only"><?php echo $expiredCount; ?>% Complete</span> </div>
                                 </div>
 
                                 <script type="text/javascript">
