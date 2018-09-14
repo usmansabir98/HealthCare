@@ -11,6 +11,8 @@
 	$queryUser = mysqli_query($con, "SELECT * FROM user WHERE emailid='$userLoggedIn'");
   $user = mysqli_fetch_array($queryUser);
 
+
+  include("includes/handlers/code-handler.php");
   include("includes/handlers/order-handler.php");
 
 
