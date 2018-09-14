@@ -79,6 +79,28 @@ if(isset($_POST['reserveOrder'])){
 	if($query == true) {
 		echo $modal;
     echo $modalScript;
+
+    $username = "923348289867";///Your Username
+    $password = "3147";///Your Password
+    $mobile = "923348289867";///Recepient Mobile Number
+    $sender = "MediQuick";
+    $message = $code;
+
+    ////sending sms
+
+    $post = "sender=".urlencode($sender)."&mobile=".urlencode($mobile)."&message=".urlencode($message)."";
+    $url = "http://sendpk.com/api/sms.php?username=923348289867&password=3147";
+    $ch = curl_init();
+    $timeout = 0; // set to zero for no timeout
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)');
+    curl_setopt($ch, CURLOPT_URL,$url);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,$post);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt ($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $result = curl_exec($ch); 
+    /*Print Responce*/
+    echo $result; 
 	}
 	else{
 		echo $modalFailure;

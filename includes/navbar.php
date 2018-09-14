@@ -7,7 +7,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a id="brand" class="navbar-brand" href="#">Health-Care</a>
+                    <a id="brand" class="navbar-brand" href="#">MediQuick</a>
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
