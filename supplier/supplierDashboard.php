@@ -45,10 +45,10 @@ $queryTotal = mysqli_query($con, "SELECT orderId from orders
 
 $totalCount = mysqli_num_rows($queryTotal);
 
-$pendingCount = mysqli_num_rows($queryPending)/$totalCount*100;
-$expiredCount = mysqli_num_rows($queryExpired)/$totalCount*100;
-$fulfilledCount = mysqli_num_rows($queryFulfilled)/$totalCount*100;
-$unfulfilledCount = mysqli_num_rows($queryUnfulfilled)/$totalCount*100;
+$pendingCount = floor(mysqli_num_rows($queryPending)/$totalCount*100);
+$expiredCount = floor(mysqli_num_rows($queryExpired)/$totalCount*100);
+$fulfilledCount = floor(mysqli_num_rows($queryFulfilled)/$totalCount*100);
+$unfulfilledCount = floor(mysqli_num_rows($queryUnfulfilled)/$totalCount*100);
 
 
 ?>
