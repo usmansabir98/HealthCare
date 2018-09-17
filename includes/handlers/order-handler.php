@@ -80,8 +80,8 @@ if(isset($_POST['reserveOrder'])){
 		echo $modal;
     echo $modalScript;
 
-    $username = "923348289867";///Your Username
-    $password = "3147";///Your Password
+    $username = "923312444025";///Your Username
+    $password = "6231";///Your Password
     $mobile = "923348289867";///Recepient Mobile Number
     $sender = "MediQuick";
     $message = $code;
@@ -89,7 +89,7 @@ if(isset($_POST['reserveOrder'])){
     ////sending sms
 
     $post = "sender=".urlencode($sender)."&mobile=".urlencode($mobile)."&message=".urlencode($message)."";
-    $url = "http://sendpk.com/api/sms.php?username=923348289867&password=3147";
+    $url = "http://sendpk.com/api/sms.php?username=923312444025&password=6231";
     $ch = curl_init();
     $timeout = 0; // set to zero for no timeout
     curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)');
